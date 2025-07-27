@@ -8,7 +8,7 @@ A simple AI-powered chatbot built using **Flask** and **OpenAI GPT (ChatGPT)**, 
 
 ## 🌐 Live Demo
 
-> 🔗 Hosted on [Render](https://render.com)  
+> 🔗 Hosted on [Render](https://xandra-bot.onrender.com)  
 > (Replace with your actual URL after deployment)
 
 ---
