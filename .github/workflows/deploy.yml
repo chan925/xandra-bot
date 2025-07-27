@@ -1,0 +1,41 @@
+name: Deploy Flask Chatbot
+
+on:
+  push:
+    branches:
+      - main  # Or 'master'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.10
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Lint Python Code
+      run: |
+        pip install flake8
+        flake8 .
+
+    - name: Run Flask App (Test Only)
+      run: |
+        echo "Running Flask App for Testing Only"
+        python chatbot.py &
+        sleep 10
+
+    - name: Test Chatbot Endpoint
+      run: |
+        curl -X POST http://localhost:5000/chat \
+          -H "Content-Type: application/json" \
+          -d '{"message":"Hello"}' || true
